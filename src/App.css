@@ -38,6 +38,9 @@
 }
 
 
+.wrapper {
+  padding: 20px;
+}
 
 /* div.App{
   border-style: solid;
@@ -46,14 +49,14 @@
 }
  */
 
-div.App { 
+/* div.App { 
  
   background: white;
   border-radius: 4px;
   
   background-image: repeating-linear-gradient(to right, #c4e17f 50px, #f7fdca 50px, #fad071 50px, #f0766b, #db9dbe, #c49cdf, #6599e2, #61c2e4);
   overflow: scroll;
-}
+} */
 
 table, th, td {
   border: 1px solid black;
@@ -61,3 +64,19 @@ table, th, td {
 }
 
 
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+.home,
+.services,
+.reports,
+.contact,
+.events,
+.support {
+  display: flex;
+  margin-left: 260px;
+  font-size: 2rem;
+}

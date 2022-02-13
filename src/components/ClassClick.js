@@ -21,5 +21,4 @@ class ClassClick extends Component {
     }
 
 }
-
 export default ClassClick

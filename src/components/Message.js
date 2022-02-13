@@ -28,8 +28,6 @@ class Message extends Component {
             </div>
 
         )
-
-
     }
 
 }

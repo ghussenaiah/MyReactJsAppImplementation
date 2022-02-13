@@ -9,8 +9,6 @@ function FunctionClick(props) {
            console.log('button clicked')
     }
 
-        
-         
     return (
     
         <div>

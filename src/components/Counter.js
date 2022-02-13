@@ -6,27 +6,36 @@ class Counter extends Component {
         super()
         this.state = {
 
-            counter : 0
+            counter: 0
         }
 
     }
-/* 
-    increment() {
-
-        this.setState({ 
-             counter : this.state.counter+1
-        },()=>{ console.log('call back value ',this.state.counter)});
-        console.log('console value',this.state.counter)
-
-    } */
-
 
     increment() {
 
-        this.setState(prevState => ({ 
-             counter : prevState.counter+1
+        this.setState({
+            counter: this.state.counter + 1
+        }, 
+        () => 
+        { console.log('call back value ', this.state.counter) }
+        );
+        console.log('console value', this.state.counter)
+
+    }
+
+
+
+
+
+
+
+
+    increment() {
+
+        this.setState(prevState => ({
+            counter: prevState.counter + 1
         }));
-        console.log('console value',this.state.counter)
+        console.log('console value', this.state.counter)
 
     }
 
@@ -40,7 +49,7 @@ class Counter extends Component {
     }
 
 
- render() {
+    render() {
         return (
 
             <div>

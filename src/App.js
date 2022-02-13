@@ -20,14 +20,100 @@ import styles from './components/appStlyes.module.css'
 import Form from './components/Form'
 import PostList from './components/PostList';
 import PostForm from './components/PostForm';
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
-import Navbar from './components/Navbar';
+// import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import { BrowserRouter, Route,Routes, Switch } from 'react-router-dom';
+ import Navbar from './components/Navbar';
+import Dashboard from './Dashboard/Dashboard';
+import Preferences from './Preferences/Preferences';
+// import React, { useState } from 'react';
+import Login from './Login/Login';
+import useToken from './useToken';
+import Sidebar from "./SideBar/Sidebar";
+import { AboutUs, OurAim, OurVision,OurVision1 } from "./Pages/AboutUs";
+import {
+  Services,
+  ServicesOne,
+  ServicesTwo,
+  ServicesThree,
+} from "./Pages/Services";
+import { Events, EventsOne, EventsTwo } from "./Pages/Events";
+import Contact from "./Pages/Contact";
+import Support from "./Pages/Support";
+import EditEmployee from "./Pages/EditEmployee";
 
+/* import Navbar from "./SideBar/Navbar";
+import Content from "./SideBar/Content"; */
+
+
+/* function setToken(userToken) {
+  sessionStorage.setItem('token', JSON.stringify(userToken));
+}
+
+function getToken() {
+
+  const tokenString = sessionStorage.getItem('token');
+  const userToken = JSON.parse(tokenString);
+  return userToken?.token
+} */
 
 function App() {
+  // const [token, setToken] = useState();
+  // const token = getToken();
+  const { token, setToken } = useToken();
+  // console.log("after refresh",token);
+
+  if(!token) {
+    return <Login setToken={setToken} />
+  }
+
   return (
     <div className="App">
-    {/*   <Navbar /> */}
+
+   {/* <h2>Application</h2> */}
+   {
+
+
+
+  <BrowserRouter>
+    { <Sidebar /> }
+  {/*   <Navbar />
+      <Content /> */}
+        <Routes>
+      <Route path="/about-us" exact element={<AboutUs/>} />
+      <Route path="/about-us/aim" exact element={<OurAim/>} />
+      <Route path="/about-us/vision" exact element={<OurVision/>} />
+      <Route path="/services" exact element={<Services/>} />
+      <Route path="/services/services1" exact element={<ServicesOne/>} />
+      <Route path="/services/services2" exact element={<ServicesTwo/>} />
+      <Route path="/services/services3" exact element={<ServicesThree/>} />
+      <Route path="/contact" exact element={<Contact/>} />
+      <Route path="/events" exact element={<Events/>} />
+      <Route path="/events/events1" exact element={<EventsOne/>} />
+      <Route path="/events/events2" exact element={<EventsTwo/>} />
+      <Route path="/EditEmployee/editID/:id" exact element={<EditEmployee/>} />
+      {/* <Route path="/support" exact element={<Support/>} /> */}
+      </Routes>
+  </BrowserRouter>
+   
+   
+   // Login Page Implementation
+   /*    <BrowserRouter>
+        <Routes>
+
+        <Route path="/" element={<Dashboard/>}>
+         
+         </Route>
+
+          <Route path="/dashboard" element={<Dashboard/>}>
+         
+          </Route>
+          <Route path="/preferences" element={<Preferences/>}>
+           
+          </Route>
+        </Routes>
+      </BrowserRouter> */}
+
+{/*   <Navbar /> */}
 { /* <Router>
 <Navbar />
       </Router>  */}
