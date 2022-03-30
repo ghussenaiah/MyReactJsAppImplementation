@@ -85,7 +85,7 @@ return (
 		</h1>
 
 		<NavIcon to="#">
-	{/* 	<button className="mybutton">Logout</button> */}
+
 
 		<button className="mybutton" onClick={logout}>Logout</button>
 		</NavIcon>

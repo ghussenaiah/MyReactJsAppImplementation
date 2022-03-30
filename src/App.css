@@ -60,7 +60,8 @@
 
 table, th, td {
   border: 1px solid black;
-  border-radius: 10px;
+  border-radius: 10px;text-align: center;  
+  
 }
 
 
@@ -70,6 +71,8 @@ table, th, td {
   margin: 0;
   padding: 0;
 }
+
+
 .home,
 .services,
 .reports,
@@ -80,3 +83,4 @@ table, th, td {
   margin-left: 260px;
   font-size: 2rem;
 }
+

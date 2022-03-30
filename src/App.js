@@ -41,6 +41,10 @@ import Contact from "./Pages/Contact";
 import Support from "./Pages/Support";
 import EditEmployee from "./Pages/EditEmployee";
 
+import { ThemeProvider } from 'styled-components';
+import { lightTheme, darkTheme } from './theme';
+
+
 /* import Navbar from "./SideBar/Navbar";
 import Content from "./SideBar/Content"; */
 
@@ -57,6 +61,10 @@ function getToken() {
 } */
 
 function App() {
+
+
+
+
   // const [token, setToken] = useState();
   // const token = getToken();
   const { token, setToken } = useToken();
@@ -67,7 +75,11 @@ function App() {
   }
 
   return (
-    <div className="App">
+
+    <ThemeProvider theme={darkTheme}>
+  {/*     className="App" */}
+  
+    <div >
 
    {/* <h2>Application</h2> */}
    {
@@ -122,6 +134,10 @@ function App() {
  {/*     <PostForm /> */}
      
     </div>
+    <>
+     
+     </>
+   </ThemeProvider>
   );
 }
 

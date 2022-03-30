@@ -4,6 +4,7 @@ import { useForm } from "react-hook-form";
 
 import styled from "styled-components";
 
+
 import { Icon } from '@mui/material';
 
 import { TextField } from "@material-ui/core";
@@ -18,6 +19,7 @@ import { Link} from 'react-router-dom';
 // import ModeEditIcon from '@mui/icons-material/ModeEdit';
 import DeleteIcon from '@mui/icons-material/Delete';
 import EditIcon from '@mui/icons-material/Edit';
+
 // import saveData from "./some_other_file";
 
 const Styles = styled.div`
@@ -181,22 +183,12 @@ export const OurAim = () => {
         </Grid>
 
    
-
-
-        <Grid item xs={4}>
+		<Grid item xs={4}>
 		<label>Order Number</label>
 			<input type="text" name="order" value={user.order} onChange={handleChange} />
 		</Grid>
 
-
-	
-
-	
-
-		
-
-
-		{/* <Grid item xs={4}>
+	{/* <Grid item xs={4}>
 		<label>File</label>
 			<input  type="file" name="order"  />
           </Grid>
@@ -256,10 +248,10 @@ export const OurAim = () => {
 		</Grid>
 	  </form>
 
-
-
-
-	  <table class="table table-hover  table-striped table-bordered ml-4 ">
+	 
+	 
+    
+	  <table class="table table-hover  table-striped table-bordered ml-4 center " style={{marginTop: `43px`,margin: `0 auto`}}> 
             <thead>
             <tr>
                 <th>Name</th>
@@ -392,7 +384,19 @@ export const OurVision = () => {
 return (
 	<div className="home">
 	<p>GeeksforGeeks Vision</p>
-	</div>
+	</div> 
+	/*<div style={{ height: 250, width: '100%' }}>
+	<DataGrid
+	  columns={[{ field: 'username' }, { field: 'age' }]}
+	  rows={[
+		{
+		  id: 1,
+		  username: '@MUI',
+		  age: 20,
+		},
+	  ]}
+	/>
+  </div>*/
 );
 };
 
