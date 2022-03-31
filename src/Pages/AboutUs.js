@@ -12,13 +12,20 @@ import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
 import Paper from '@mui/material/Paper';
 import Button from '@mui/material/Button';
-import  { useState, useEffect} from "react";
+import  { useState, useEffect,useRef} from "react";
 import axios from "axios";
 import { Link} from 'react-router-dom';
 // import DeleteIcon from '@mui/icons-material/Delete';
 // import ModeEditIcon from '@mui/icons-material/ModeEdit';
 import DeleteIcon from '@mui/icons-material/Delete';
 import EditIcon from '@mui/icons-material/Edit';
+import {toast} from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import { DataGrid } from "@material-ui/data-grid";
+
+import Dialog from "./Dialog.js";
+
+toast.configure()
 
 // import saveData from "./some_other_file";
 
@@ -101,6 +108,47 @@ return (
 
 export const OurAim = () => {
 
+
+	const [products, setProducts] = useState([]);
+
+  //You can put all product information into diaglog
+  const [dialog, setDialog] = useState({
+    message: "",
+    isLoading: false,
+    //Update
+    nameProduct: ""
+  });
+
+
+  const idProductRef = useRef();
+
+  const handleDialog = (message, isLoading, nameProduct) => {
+    setDialog({
+      message,
+      isLoading,
+      //Update
+      nameProduct
+    });
+  };
+
+  const handleDelete = (id) => {
+    //Update
+    const index = record.findIndex((p) => p.id === id);
+
+    handleDialog("Are you sure you want to delete?", true, record[index].order);
+    idProductRef.current = id;
+  };
+
+  const areUSureDelete = (choose) => {
+    if (choose) {
+     // setProducts(products.filter((p) => p.id !== idProductRef.current));
+	 deleteRecord(idProductRef.current)
+      handleDialog("", false);
+    } else {
+      handleDialog("", false);
+    }
+  };
+
 	const { register, handleSubmit } = useForm();
 
 	const [record,setRecord] = useState([]);
@@ -134,7 +182,10 @@ export const OurAim = () => {
 		
 		axios.delete(`http://localhost:5000/delete`,{params: { id: employeeid}})
 		.then((result)=>{
+			toast.error('Deleted Sucessfully',
+			{position: toast.POSITION.BOTTOM_CENTER,autoClose:1000})
 		  loadEmployeeDetail();
+
 		})
 		.catch(()=>{
 		  alert('Error in the Code');
@@ -155,8 +206,11 @@ export const OurAim = () => {
         e.target.reset();
 		console.log(user);
         await axios.post("http://localhost:5000/register",user);
+		toast.success('Saved Sucessfully',
+		{position: toast.POSITION.BOTTOM_CENTER,autoClose:1000})
 		loadEmployeeDetail();
-        alert('Data Inserted');
+		
+       // alert('Data Inserted');
 		
          
         
@@ -269,24 +323,33 @@ export const OurAim = () => {
                 <td>{name.addresss}</td>
                 <td>{name.order}</td>
 				<td>
-
-				{/* to={`/EditEmployee/editID/${name.id}`}  */}
-                     {/*  <EditIcon  to={`/EditEmployee/editID/${name.id}`}    /> */}
-					  <Link class=" mr-2" to={`/EditEmployee/editID/${name.id}`}>
+	             <Link class=" mr-2" to={`/EditEmployee/editID/${name.id}`}>
 					  <EditIcon/>
                     </Link>
-					  <DeleteIcon onClick={() => {
-                          const confirmBox = window.confirm(
-                            "Do you really want to delete "+ name.name
-                          )
-                          if (confirmBox === true) {
-                            deleteRecord(name.id)
-                          }
-                        }} ></DeleteIcon>
+					  <DeleteIcon onClick={() => handleDelete(name.id)}
+            style={{
+              marginTop: "10px",
+              background: "red",
+              fontWeight: "bolder",
+              border: "none",
+              padding: "8px",
+              cursor: "pointer",
+              color: "white",
+              borderRadius: "8px"
+            }}></DeleteIcon>
                 </td>
             
                 </tr>
                 )} 
+
+        {dialog.isLoading && (
+        <Dialog
+          //Update
+          nameProduct={dialog.nameProduct}
+          onDialog={areUSureDelete}
+          message={dialog.message}
+        />
+      )}
             </tbody>
         </table>
 
@@ -379,24 +442,50 @@ return (
 );
 };
 
+
+const columns=[
+
+	
+	{field:'id',headerName:'Id'},
+	{field:'jobTitle',headerName:'JobTitle',width:200},
+	{field:'name',headerName:'Name',width:200},
+	{field:'addresss',headerName:'Address',width:200},
+	{field:'order',headerName:'Order',width:200}
+]
+
+
 export const OurVision = () => {
     console.log("am bout as Vision ");
+
+
+	
+	const [table,setTable]=useState([]);
+
+	const loadEmployeeDetail = async () =>  
+    {
+      var response = fetch('http://localhost:5000/fetchall')
+         .then(function(response){
+            return response.json();
+          })
+         .then(function(myJson) {
+			 console.log("all emplyee data",myJson)
+			 setTable(myJson);
+          });
+    }
+    useEffect(() => {
+      loadEmployeeDetail();
+    }, []);
+
 return (
-	<div className="home">
-	<p>GeeksforGeeks Vision</p>
-	</div> 
-	/*<div style={{ height: 250, width: '100%' }}>
-	<DataGrid
-	  columns={[{ field: 'username' }, { field: 'age' }]}
-	  rows={[
-		{
-		  id: 1,
-		  username: '@MUI',
-		  age: 20,
-		},
-	  ]}
+	<div  style ={{height:700,width:'100%'}} className="contact">
+	<DataGrid rows={table}
+	columns={columns}
+	pageSize={10}
+	checkboxSelection
+	
+
 	/>
-  </div>*/
+	</div>
 );
 };
 

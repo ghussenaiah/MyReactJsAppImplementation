@@ -19,7 +19,7 @@ export const SidebarData = [
 		icon: <IoIcons.IoIosPaper />,
 	},
 	{
-		title: "Our Vision",
+		title: "View Data",
 		path: "/about-us/vision",
 		icon: <IoIcons.IoIosPaper />,
 	},
