@@ -45,77 +45,79 @@ width: 100%;
 `;
 
 const Sidebar = () => {
-const [sidebar, setSidebar] = useState(false);
+	const [sidebar, setSidebar] = useState(false);
 
-const logout = async e => {
+	const logout = async e => {
 
-	sessionStorage.removeItem('token');
-  
-	console.log("Hello after logout");
+		sessionStorage.removeItem('token');
 
-   // navigate('/');
-   sessionStorage.clear();
-   window.location.href = '/';
-  
-  
-  } 
+		console.log("Hello after logout");
 
-const showSidebar = () => setSidebar(!sidebar);
-
-return (
-	<>
-	<IconContext.Provider value={{ color: "#fff" }}>
-		<Nav>
-		
-        
-        <NavIcon to="#">
-			<FaIcons.FaBars onClick={showSidebar} />
-		</NavIcon>
-
-	
+		// navigate('/');
+		sessionStorage.clear();
+		window.location.href = '/';
 
 
-	
-     
-		<h1
-			style={{ textAlign: "center",
-					marginLeft: "200px",
-					color: "green" }}>
-			Demo Application
-		</h1>
+	}
 
-		<NavIcon to="#">
+	const showSidebar = () => setSidebar(!sidebar);
+
+	return (
+		<>
+			<IconContext.Provider value={{ color: "#fff" }}>
+				<Nav>
 
 
-		<button className="mybutton" onClick={logout}>Logout</button>
-		</NavIcon>
-		</Nav>
+					<NavIcon to="#">
+						<FaIcons.FaBars onClick={showSidebar} />
+					</NavIcon>
 
 
 
 
-		<SidebarNav sidebar={sidebar}>
 
 
-		<SidebarWrap>
-			<NavIcon to="#">
+					<h1
+						style={{
+							textAlign: "center",
+							marginLeft: "200px",
+							color: "green"
+						}}>
+						Demo Application
+					</h1>
 
-			<AiIcons.AiOutlineClose onClick={showSidebar} />
-			</NavIcon>
-
-			{SidebarData.map((item, index) => {
-			return <SubMenu item={item} key={index} />;
-			})}
-
-            
-		</SidebarWrap>
+					<NavIcon to="#">
 
 
-		</SidebarNav>
+						<button className="mybutton" onClick={logout}>Logout</button>
+					</NavIcon>
+				</Nav>
 
-	</IconContext.Provider>
-	</>
-);
+
+
+
+				<SidebarNav sidebar={sidebar}>
+
+
+					<SidebarWrap>
+						<NavIcon to="#">
+
+							<AiIcons.AiOutlineClose onClick={showSidebar} />
+						</NavIcon>
+
+						{SidebarData.map((item, index) => {
+							return <SubMenu item={item} key={index} />;
+						})}
+
+
+					</SidebarWrap>
+
+
+				</SidebarNav>
+
+			</IconContext.Provider>
+		</>
+	);
 };
 
 export default Sidebar;

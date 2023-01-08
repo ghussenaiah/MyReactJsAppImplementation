@@ -1,6 +1,6 @@
 import React from 'react';
 import './Login.css';
-import  { useState } from 'react';
+import { useState } from 'react';
 import { useNavigate } from 'react-router-dom'
 
 import styled from "styled-components";
@@ -75,14 +75,14 @@ async function loginUser(credentials) {
     body: JSON.stringify(credentials)
   })
     .then(data => data.json())
- }
+}
 
-export default function Login({setToken}) {
+export default function Login({ setToken }) {
   const [username, setUserName] = useState();
   const [password, setPassword] = useState();
 
 
-//  const navigate = useNavigate();
+  //  const navigate = useNavigate();
 
   const handleSubmit = async e => {
     e.preventDefault();
@@ -93,16 +93,40 @@ export default function Login({setToken}) {
     setToken(token);
     // navigate('/home')
 
-    console.log("Hello am new token",token)
+    console.log("Hello am new token", token)
   }
   /* className="login-wrappe" */
 
   function Form() {
-		return (
+    return (
       <div>
-      
-      <form onSubmit={handleSubmit}>
+
+        <form onSubmit={handleSubmit}>
+          <h1>Please Log In</h1>
+          <label>
+            <p>Username</p>
+            <input type="text" onChange={e => setUserName(e.target.value)} />
+          </label>
+          <label>
+            <p>Password</p>
+            <input type="password" onChange={e => setPassword(e.target.value)} />
+          </label>
+          <div>
+
+
+            <Button className="submitButton" type="submit" variant="contained" color="success">
+              Success
+            </Button>
+          </div>
+        </form>
+      </div>
+    );
+  }
+
+  /*   return(
+      <div className="login-wrapper">
       <h1>Please Log In</h1>
+      <form onSubmit={handleSubmit}>
         <label>
           <p>Username</p>
           <input type="text" onChange={e => setUserName(e.target.value)} />
@@ -112,18 +136,18 @@ export default function Login({setToken}) {
           <input type="password" onChange={e => setPassword(e.target.value)}/>
         </label>
         <div>
-         
-
-          <Button className="submitButton" type="submit" variant="contained" color="success">
-        Success
-      </Button>
+          <button type="submit">Submit</button>
         </div>
       </form>
       </div>
-		);
-	   }
+    ) */
 
-/*   return(
+  return (
+
+  /*  <Styles>
+      <Form />
+    </Styles>  */
+
     <div className="login-wrapper">
     <h1>Please Log In</h1>
     <form onSubmit={handleSubmit}>
@@ -133,21 +157,14 @@ export default function Login({setToken}) {
       </label>
       <label>
         <p>Password</p>
-        <input type="password" onChange={e => setPassword(e.target.value)}/>
+        <input type="password" onChange={e => setPassword(e.target.value)} />
       </label>
       <div>
         <button type="submit">Submit</button>
       </div>
     </form>
-    </div>
-  ) */
+  </div>
 
-  return (
 
-    <Styles>
-      <Form />
-      </Styles>
-  
-    
   );
 }
