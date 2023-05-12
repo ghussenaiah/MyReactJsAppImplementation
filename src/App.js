@@ -21,15 +21,15 @@ import Form from './components/Form'
 import PostList from './components/PostList';
 import PostForm from './components/PostForm';
 // import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
-import { BrowserRouter, Route,Routes, Switch } from 'react-router-dom';
- import Navbar from './components/Navbar';
+import { BrowserRouter, Route, Routes, Switch } from 'react-router-dom';
+import Navbar from './components/Navbar';
 import Dashboard from './Dashboard/Dashboard';
 import Preferences from './Preferences/Preferences';
 // import React, { useState } from 'react';
 import Login from './Login/Login';
-import useToken from './useToken';
+// import useToken from './useToken';
 import Sidebar from "./SideBar/Sidebar";
-import { AboutUs, OurAim, OurVision,OurVision1 } from "./Pages/AboutUs";
+import { AboutUs, OurAim, OurVision, OurVision1 } from "./Pages/AboutUs";
 import {
   Services,
   ServicesOne,
@@ -43,6 +43,10 @@ import EditEmployee from "./Pages/EditEmployee";
 
 import { ThemeProvider } from 'styled-components';
 import { lightTheme, darkTheme } from './theme';
+
+import React, { Component } from 'react';
+
+import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
 
 
 /* import Navbar from "./SideBar/Navbar";
@@ -67,47 +71,49 @@ function App() {
 
   // const [token, setToken] = useState();
   // const token = getToken();
-  const { token, setToken } = useToken();
+ // const { token, setToken } = useToken();
   // console.log("after refresh",token);
 
-  if(!token) {
-    return <Login setToken={setToken} />
-  }
+ // if (!token) {
+  //  return <Login setToken={setToken} />
+ // }
+
+  return <Login/>
 
   return (
 
     <ThemeProvider theme={darkTheme}>
-  {/*     className="App" */}
-  
-    <div >
+      {/*     className="App" */}
 
-   {/* <h2>Application</h2> */}
-   {
+      <div className="mainbody">
+
+        {/* <h2>Application</h2> */}
+        {
 
 
 
-  <BrowserRouter>
-    { <Sidebar /> }
-  {/*   <Navbar />
+          <BrowserRouter>
+            {<Sidebar />}
+            {/*   <Navbar />
       <Content /> */}
-        <Routes>
-      <Route path="/about-us" exact element={<AboutUs/>} />
-      <Route path="/about-us/aim" exact element={<OurAim/>} />
-      <Route path="/about-us/vision" exact element={<OurVision/>} />
-      <Route path="/services" exact element={<Services/>} />
-      <Route path="/services/services1" exact element={<ServicesOne/>} />
-      <Route path="/services/services2" exact element={<ServicesTwo/>} />
-      <Route path="/services/services3" exact element={<ServicesThree/>} />
-      <Route path="/contact" exact element={<Contact/>} />
-      <Route path="/events" exact element={<Events/>} />
-      <Route path="/events/events1" exact element={<EventsOne/>} />
-      <Route path="/events/events2" exact element={<EventsTwo/>} />
-      <Route path="/EditEmployee/editID/:id" exact element={<EditEmployee/>} />
-      {/* <Route path="/support" exact element={<Support/>} /> */}
-      </Routes>
-  </BrowserRouter>
-   
-   
+            <Routes>
+              <Route path="/about-us" exact element={<AboutUs />} />
+              <Route path="/about-us/aim" exact element={<OurAim />} />
+              <Route path="/about-us/vision" exact element={<OurVision />} />
+              <Route path="/services" exact element={<Services />} />
+              <Route path="/services/services1" exact element={<ServicesOne />} />
+              <Route path="/services/services2" exact element={<ServicesTwo />} />
+              <Route path="/services/services3" exact element={<ServicesThree />} />
+              <Route path="/contact" exact element={<Contact />} />
+              <Route path="/events" exact element={<Events />} />
+              <Route path="/events/events1" exact element={<EventsOne />} />
+              <Route path="/events/events2" exact element={<EventsTwo />} />
+              <Route path="/EditEmployee/editID/:id" exact element={<EditEmployee />} />
+              {/* <Route path="/support" exact element={<Support/>} /> */}
+            </Routes>
+          </BrowserRouter>
+
+
    // Login Page Implementation
    /*    <BrowserRouter>
         <Routes>
@@ -125,19 +131,19 @@ function App() {
         </Routes>
       </BrowserRouter> */}
 
-{/*   <Navbar /> */}
-{ /* <Router>
+        {/*   <Navbar /> */}
+        { /* <Router>
 <Navbar />
       </Router>  */}
-   
-   {/*   <PostList /> */}
- {/*     <PostForm /> */}
-     
-    </div>
-    <>
-     
-     </>
-   </ThemeProvider>
+
+        {/*   <PostList /> */}
+        {/*     <PostForm /> */}
+
+      </div>
+      <>
+
+      </>
+    </ThemeProvider>
   );
 }
 
@@ -158,9 +164,9 @@ export default App;
           Learn React
         </a>
       </header> */
-    
-    
-    
+
+
+
     /*
 
 

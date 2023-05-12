@@ -1,69 +1,12 @@
 import React from 'react';
 import './Login.css';
 import { useState } from 'react';
-import { useNavigate } from 'react-router-dom'
 
-import styled from "styled-components";
+
+
 import Button from '@mui/material/Button';
 
 
-const Styles = styled.div`
- background: lavender;
- padding: 20px;
-
- h1 {
-   border-bottom: 1px solid white;
-   color: #3d3d3d;
-   font-family: sans-serif;
-   font-size: 20px;
-   font-weight: 600;
-   line-height: 24px;
-   padding: 10px;
-   text-align: center;
- }
-
- form {
-   background: white;
-   border: 1px solid #dedede;
-   display: flex;
-   flex-direction: column;
-   justify-content: space-around;
-   margin: 0 auto;
-   max-width: 500px;
-   padding: 30px 50px;
- }
-
- input {
-   border: 1px solid #d9d9d9;
-   border-radius: 4px;
-   box-sizing: border-box;
-   padding: 10px;
-   width: 100%;
- }
-
- label {
-   color: #3d3d3d;
-   display: block;
-   font-family: sans-serif;
-   font-size: 14px;
-   font-weight: 500;
-   margin-bottom: 5px;
- }
-
- .error {
-   color: red;
-   font-family: sans-serif;
-   font-size: 12px;
-   height: 30px;
- }
-
- .submitButton {
-   background-color: #6976d9;
-   color: white;
-   font-family: sans-serif;
-   font-size: 14px;
-   margin: 20px 0px;
-`;
 
 
 async function loginUser(credentials) {
@@ -102,7 +45,7 @@ export default function Login({ setToken }) {
       <div>
 
         <form onSubmit={handleSubmit}>
-          <h1>Please Log In</h1>
+          <h1>Please Log In Here agaain</h1>
           <label>
             <p>Username</p>
             <input type="text" onChange={e => setUserName(e.target.value)} />
@@ -119,6 +62,9 @@ export default function Login({ setToken }) {
             </Button>
           </div>
         </form>
+
+
+
       </div>
     );
   }
@@ -144,26 +90,72 @@ export default function Login({ setToken }) {
 
   return (
 
-  /*  <Styles>
-      <Form />
-    </Styles>  */
+    /*  <Styles>
+        <Form />
+      </Styles>  */
 
-    <div className="login-wrapper">
-    <h1>Please Log In</h1>
-    <form onSubmit={handleSubmit}>
-      <label>
-        <p>Username</p>
-        <input type="text" onChange={e => setUserName(e.target.value)} />
-      </label>
-      <label>
-        <p>Password</p>
-        <input type="password" onChange={e => setPassword(e.target.value)} />
-      </label>
-      <div>
-        <button type="submit">Submit</button>
-      </div>
-    </form>
-  </div>
+    <div className="LoginForm">
+
+      <form onSubmit={handleSubmit}>
+        <h3 className="LoginLabel">Sign In</h3>
+
+        <div className="mb-3">
+          <label className="LoginLabel">Email address</label>
+          <input
+            type="email"
+            className="inputControl"
+            placeholder="Enter email" onChange={e => setUserName(e.target.value)}
+          />
+        </div>
+
+        <div className="mb-3">
+          <label className="LoginLabel">Password</label>
+          <input
+            type="password"
+            className="inputControl"
+            placeholder="Enter password" onChange={e => setPassword(e.target.value)}
+          />
+        </div>
+
+        <div className="mb-3">
+          <div className="custom-control custom-checkbox">
+            <input
+              type="checkbox"
+              className="custom-control-input"
+              id="customCheck1"
+            />
+            <label className="custom-control-label LoginLabel" htmlFor="customCheck1">
+              Remember me
+            </label>
+          </div>
+        </div>
+
+        <div className="d-grid">
+          <button type="submit" className="btn btn-primary">
+            Submit
+          </button>
+        </div>
+        <p className="forgot-password text-right">
+          Forgot <a href="#">password?</a>
+        </p>
+      </form>
+    </div>
+    /* <div className="login-wrapper">
+       <h1>Please Log In Here </h1>
+       <form onSubmit={handleSubmit}>
+         <label>
+           <p>Username</p>
+           <input type="text" onChange={e => setUserName(e.target.value)} />
+         </label>
+         <label>
+           <p>Password</p>
+           <input type="password" onChange={e => setPassword(e.target.value)} />
+         </label>
+         <div>
+           <button type="submit">Submit</button>
+         </div>
+       </form>
+     </div> */
 
 
   );
