@@ -2,7 +2,7 @@ import React from 'react';
 import './Login.css';
 import { useState } from 'react';
 
-
+import PropTypes from 'prop-types';
 
 import Button from '@mui/material/Button';
 
@@ -34,10 +34,12 @@ export default function Login({ setToken }) {
       password
     });
     setToken(token);
-    // navigate('/home')
-
-    console.log("Hello am new token", token)
   }
+  //  setToken(token);
+  // navigate('/home')
+
+  // console.log("Hello am new token", token)
+
   /* className="login-wrappe" */
 
   function Form() {
@@ -102,7 +104,7 @@ export default function Login({ setToken }) {
         <div className="mb-3">
           <label className="LoginLabel">Email address</label>
           <input
-            type="email"
+            type="text"
             className="inputControl"
             placeholder="Enter email" onChange={e => setUserName(e.target.value)}
           />
@@ -159,4 +161,7 @@ export default function Login({ setToken }) {
 
 
   );
+}
+Login.propTypes = {
+  setToken: PropTypes.func.isRequired
 }

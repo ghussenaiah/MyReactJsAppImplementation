@@ -25,7 +25,7 @@ import { BrowserRouter, Route, Routes, Switch } from 'react-router-dom';
 import Navbar from './components/Navbar';
 import Dashboard from './Dashboard/Dashboard';
 import Preferences from './Preferences/Preferences';
-// import React, { useState } from 'react';
+import { useState } from 'react';
 import Login from './Login/Login';
 // import useToken from './useToken';
 import Sidebar from "./SideBar/Sidebar";
@@ -66,19 +66,16 @@ function getToken() {
 
 function App() {
 
-
-
-
-  // const [token, setToken] = useState();
+  const [token, setToken] = useState();
   // const token = getToken();
- // const { token, setToken } = useToken();
+  // const { token, setToken } = useToken();
   // console.log("after refresh",token);
 
- // if (!token) {
-  //  return <Login setToken={setToken} />
- // }
+   if (!token) {
+    return <Login setToken={setToken} />
+   }
 
-  return <Login/>
+  // return <Login />
 
   return (
 
